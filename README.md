@@ -24,30 +24,21 @@ in `data` directory
 
 ``` whisperx data/sample01.wav ```
 
-error:
-```
-Traceback (most recent call last):
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/whisperx/bin/whisperx", line 5, in <module>
-    from whisperx.transcribe import cli
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/site-packages/whisperx/__init__.py", line 1, in <module>
-    from .transcribe import load_model
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/site-packages/whisperx/transcribe.py", line 9, in <module>
-    from .alignment import align, load_align_model
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/site-packages/whisperx/alignment.py", line 11, in <module>
-    import torchaudio
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/site-packages/torchaudio/__init__.py", line 1, in <module>
-    from torchaudio import (  # noqa: F401
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/site-packages/torchaudio/_extension/__init__.py", line 43, in <module>
-    _load_lib("libtorchaudio")
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/site-packages/torchaudio/_extension/utils.py", line 61, in _load_lib
-    torch.ops.load_library(path)
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/site-packages/torch/_ops.py", line 1295, in load_library
-    ctypes.CDLL(path)
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/ctypes/__init__.py", line 374, in __init__
-    self._handle = _dlopen(self._name, mode)
-OSError: dlopen(/opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/site-packages/torchaudio/lib/libtorchaudio.so, 0x0006): Symbol not found: __ZN3c1015SmallVectorBaseIjE8grow_podEPvmm
-  Referenced from: <27100630-351E-3677-A9E1-E90945A87662> /opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/site-packages/torchaudio/lib/libtorchaudio.so
-  Expected in:     <69A84A04-EB16-3227-9FED-383D2FE98E93> /opt/homebrew/Caskroom/miniconda/base/envs/whisperx/lib/python3.10/site-packages/torch/lib/libc10.dylib
-```
 
-                                                                                            
+### Error 1: could not run whisperx at all,
+this worked (via https://github.com/pytorch/audio/issues/1573)
+```
+pip install -U torch torchaudio --no-cache-dir
+````
+>>> `Successfully installed torchaudio-2.4.1`
+
+
+Error 2: progress bars, then compute type error
+
+*"ValueError: Requested float16 compute type, 
+but the target device or backend do not support efficient float16 computation."*
+
+this worked
+```
+whisperx data/sample01.wav   --compute_type float32
+```
