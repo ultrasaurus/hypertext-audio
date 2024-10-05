@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hypertext</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+    <script>
+        const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+        //TODO: make variable for endpoint
+        //const wsAddress = wsProtocol + "//" + location.host + "/" + "";
+        const wsAddress = wsProtocol + "//" + location.host + "/__livereload";
+        const socket = new WebSocket(wsAddress);
+        socket.onmessage = function (event) {
+            if (event.data === "reload") {
+                socket.close();
+                location.reload();
+            }
+        };
+    
+        window.onbeforeunload = function () {
+            socket.close();
+        }
+    </script>
+<body>
+    <blockquote>
+    <audio controls><source src="/media/hypertext.mp3" type="audio/mpeg">Your browser does not support the audio element. <a href="/media/hypertext.mp3" title="hypertext.mp3" class="audio"><span class="fa-solid fa-play">hypertext.mp3</span></a></audio><p><span word='0' char='0' start='0' end='0.24' debug_body='let'>Let</span> <span word='1' char='4' start='0.24' end='0.36' debug_body='me'>me</span> <span word='2' char='7' start='0.36' end='0.87' debug_body='introduce'>introduce</span> <span word='3' char='17' start='0.87' end='0.99' debug_body='the'>the</span> <span word='4' char='21' start='0.99' end='1.38' debug_body='word.'>word</span> <span word='5' char='27' start='1.65' end='2.61' debug_body='Hypertext'>hypertext</span>"<span word='6' char='38' start='2.88' end='3.09' debug_body='to'>to</span> <span word='7' char='41' start='3.09' end='3.39' debug_body='mean'>mean</span> <span word='8' char='46' start='3.39' end='3.45' debug_body='a'>a</span> <span word='9' char='48' start='3.45' end='4.08' debug_body='body'>body</span> <span word='10' char='53' start='4.17' end='4.38' debug_body='of'>of</span> <span word='11' char='56' start='4.38' end='4.89' debug_body='written'>written</span> <span word='12' char='64' start='5.32' end='5.53' debug_body='or'>or</span> <span word='13' char='67' start='5.53' end='6.31' debug_body='pictorial'>pictorial</span> <span word='14' char='77' start='6.31' end='7.06' debug_body='material'>material</span> <span word='15' char='86' start='7.21' end='8.26' debug_body='interconnected'>interconnected</span> <span word='16' char='101' start='8.29' end='8.5' debug_body='in'>in</span> <span word='17' char='104' start='8.5' end='8.71' debug_body='such'>such</span> <span word='18' char='109' start='8.71' end='8.8' debug_body='a'>a</span> <span word='19' char='111' start='8.8' end='9.61' debug_body='complex'>complex</span> <span word='20' char='119' start='9.61' end='10.12' debug_body='way'>way</span> <span word='21' char='123' start='10.45' end='10.63' debug_body='that'>that</span> <span word='22' char='128' start='10.63' end='10.72' debug_body='it'>it</span> <span word='23' char='131' start='10.72' end='10.96' debug_body='could'>could</span> <span word='24' char='137' start='10.96' end='11.32' debug_body='not'>not</span> <span word='25' char='141' start='11.32' end='12.25' debug_body='conveniently'>conveniently</span> <span word='26' char='154' start='12.25' end='12.43' debug_body='be'>be</span> <span word='27' char='157' start='12.43' end='13.15' debug_body='presented'>presented</span> <span word='28' char='167' start='13.18' end='13.39' debug_body='or'>or</span> <span word='29' char='170' start='13.39' end='14.23' debug_body='represented'>represented</span> <span word='30' char='182' start='14.26' end='14.53' debug_body='on'>on</span> <span word='31' char='185' start='14.53' end='15.01' debug_body='paper.'>paper</span>.</p>
+</blockquote>
+</body>
+
+</html>
